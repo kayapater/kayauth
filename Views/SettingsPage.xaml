@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:AuthApp.ViewModels"
+             xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="AuthApp.Views.SettingsPage"
+             x:DataType="viewmodels:SettingsViewModel"
+             Title="Ayarlar"
+             Shell.NavBarIsVisible="False">
+
+    <Grid Background="{DynamicResource PageGradient}">
+        <AbsoluteLayout InputTransparent="True">
+            <Ellipse Fill="{DynamicResource PrimaryBrush}" Opacity="0.06" WidthRequest="240" HeightRequest="240"
+                      AbsoluteLayout.LayoutBounds="0.1,0.02,240,240" AbsoluteLayout.LayoutFlags="PositionProportional" />
+            <Ellipse Fill="{DynamicResource SecondaryBrush}" Opacity="0.08" WidthRequest="200" HeightRequest="200"
+                      AbsoluteLayout.LayoutBounds="0.95,0.12,200,200" AbsoluteLayout.LayoutFlags="PositionProportional" />
+        </AbsoluteLayout>
+
+        <Grid RowDefinitions="Auto, *" Padding="24, 24, 24, 0" MaximumWidthRequest="680" HorizontalOptions="Center">
+            <Grid Grid.Row="0" ColumnDefinitions="Auto, *" ColumnSpacing="12" Margin="0,6,0,18">
+                <!-- Back Button as a Border with Vector Path -->
+                <Border StrokeThickness="0" StrokeShape="RoundRectangle 22" WidthRequest="44" HeightRequest="44"
+                        BackgroundColor="{DynamicResource CardBackground}" HorizontalOptions="Start">
+                    <Border.Behaviors>
+                        <mct:TouchBehavior PressedScale="0.92" PressedOpacity="0.7" Command="{Binding BackCommand}" />
+                    </Border.Behaviors>
+                    <Path Data="M20,11H7.83l5.59,-5.59L12,4l-8,8 8,8 1.41,-1.41L7.83,13H20v-2Z" Fill="{DynamicResource TextPrimaryColor}" Aspect="Uniform" WidthRequest="18" HeightRequest="18" HorizontalOptions="Center" VerticalOptions="Center" />
+                </Border>
+
+                <VerticalStackLayout Grid.Column="1" Spacing="4" VerticalOptions="Center">
+                    <Label Text="Ayarlar" Style="{StaticResource DisplayLabel}" />
+                    <Label Text="Görünüm teması ve veri yönetimi" Style="{StaticResource SubtitleLabel}" />
+                </VerticalStackLayout>
+            </Grid>
+
+            <ScrollView Grid.Row="1">
+                <VerticalStackLayout Spacing="18">
+                    <!-- TEMA SEÇİMİ BÖLÜMÜ -->
+                    <Label Text="TEMA SEÇİMİ" Style="{StaticResource EyebrowLabel}" />
+
+                    <Border Padding="20" StrokeThickness="1" StrokeShape="RoundRectangle 20"
+                            Stroke="{DynamicResource CardBorder}"
+                            BackgroundColor="{DynamicResource CardBackground}">
+                        <VerticalStackLayout Spacing="14">
+                            <Label Text="🎨 Uygulama Teması" Style="{StaticResource SectionLabel}" />
+                            <Label Text="Tarzınıza en uygun renk şemasını seçin." Style="{StaticResource SubtitleLabel}" />
+
+                            <!-- Tema Düğmeleri Izgarası -->
+                            <Grid ColumnDefinitions="*, *, *, *" ColumnSpacing="8" HeightRequest="72">
+                                <!-- Midnight -->
+                                <Border Grid.Column="0" StrokeShape="RoundRectangle 14" StrokeThickness="1.5" Padding="4"
+                                        Stroke="{DynamicResource CardBorder}"
+                                        BackgroundColor="{DynamicResource CardBackground}">
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding SelectThemeCommand}" CommandParameter="Midnight" />
+                                    </Border.GestureRecognizers>
+                                    <Border.Triggers>
+                                        <DataTrigger TargetType="Border" Binding="{Binding SelectedTheme}" Value="Midnight">
+                                            <Setter Property="Stroke" Value="{DynamicResource Primary}" />
+                                            <Setter Property="StrokeThickness" Value="2.5" />
+                                        </DataTrigger>
+                                    </Border.Triggers>
+                                    <VerticalStackLayout Spacing="4" HorizontalOptions="Center" VerticalOptions="Center">
+                                        <Ellipse Fill="#6366F1" WidthRequest="20" HeightRequest="20" HorizontalOptions="Center" />
+                                        <Label Text="Midnight" FontSize="11" FontAttributes="Bold" HorizontalOptions="Center" />
+                                    </VerticalStackLayout>
+                                </Border>
+
+                                <!-- Emerald -->
+                                <Border Grid.Column="1" StrokeShape="RoundRectangle 14" StrokeThickness="1.5" Padding="4"
+                                        Stroke="{DynamicResource CardBorder}"
+                                        BackgroundColor="{DynamicResource CardBackground}">
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding SelectThemeCommand}" CommandParameter="Emerald" />
+                                    </Border.GestureRecognizers>
+                                    <Border.Triggers>
+                                        <DataTrigger TargetType="Border" Binding="{Binding SelectedTheme}" Value="Emerald">
+                                            <Setter Property="Stroke" Value="{DynamicResource Primary}" />
+                                            <Setter Property="StrokeThickness" Value="2.5" />
+                                        </DataTrigger>
+                                    </Border.Triggers>
+                                    <VerticalStackLayout Spacing="4" HorizontalOptions="Center" VerticalOptions="Center">
+                                        <Ellipse Fill="#10B981" WidthRequest="20" HeightRequest="20" HorizontalOptions="Center" />
+                                        <Label Text="Emerald" FontSize="11" FontAttributes="Bold" HorizontalOptions="Center" />
+                                    </VerticalStackLayout>
+                                </Border>
+
+                                <!-- Sunset -->
+                                <Border Grid.Column="2" StrokeShape="RoundRectangle 14" StrokeThickness="1.5" Padding="4"
+                                        Stroke="{DynamicResource CardBorder}"
+                                        BackgroundColor="{DynamicResource CardBackground}">
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding SelectThemeCommand}" CommandParameter="Sunset" />
+                                    </Border.GestureRecognizers>
+                                    <Border.Triggers>
+                                        <DataTrigger TargetType="Border" Binding="{Binding SelectedTheme}" Value="Sunset">
+                                            <Setter Property="Stroke" Value="{DynamicResource Primary}" />
+                                            <Setter Property="StrokeThickness" Value="2.5" />
+                                        </DataTrigger>
+                                    </Border.Triggers>
+                                    <VerticalStackLayout Spacing="4" HorizontalOptions="Center" VerticalOptions="Center">
+                                        <Ellipse Fill="#EC4899" WidthRequest="20" HeightRequest="20" HorizontalOptions="Center" />
+                                        <Label Text="Sunset" FontSize="11" FontAttributes="Bold" HorizontalOptions="Center" />
+                                    </VerticalStackLayout>
+                                </Border>
+
+                                <!-- Cyberpunk -->
+                                <Border Grid.Column="3" StrokeShape="RoundRectangle 14" StrokeThickness="1.5" Padding="4"
+                                        Stroke="{DynamicResource CardBorder}"
+                                        BackgroundColor="{DynamicResource CardBackground}">
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding SelectThemeCommand}" CommandParameter="Cyberpunk" />
+                                    </Border.GestureRecognizers>
+                                    <Border.Triggers>
+                                        <DataTrigger TargetType="Border" Binding="{Binding SelectedTheme}" Value="Cyberpunk">
+                                            <Setter Property="Stroke" Value="{DynamicResource Primary}" />
+                                            <Setter Property="StrokeThickness" Value="2.5" />
+                                        </DataTrigger>
+                                    </Border.Triggers>
+                                    <VerticalStackLayout Spacing="4" HorizontalOptions="Center" VerticalOptions="Center">
+                                        <Ellipse Fill="#06B6D4" WidthRequest="20" HeightRequest="20" HorizontalOptions="Center" />
+                                        <Label Text="Cyber" FontSize="11" FontAttributes="Bold" HorizontalOptions="Center" />
+                                    </VerticalStackLayout>
+                                </Border>
+                            </Grid>
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Label Text="VERİ YÖNETİMİ" Style="{StaticResource EyebrowLabel}" />
+
+                    <Border Padding="20" StrokeThickness="1" StrokeShape="RoundRectangle 20"
+                            Stroke="{AppThemeBinding Light={StaticResource BorderLight}, Dark={StaticResource BorderDark}}"
+                            BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceLight}, Dark={StaticResource SurfaceDark}}">
+                        <VerticalStackLayout Spacing="12">
+                            <Label Text="📦 Yedekleme" Style="{StaticResource SectionLabel}" />
+                            <Label Text="Hesaplarınızı şifreli bir .auth dosyası olarak kaydedin." Style="{StaticResource SubtitleLabel}" />
+                            <Button Text="Yedek dosyası oluştur" Command="{Binding BackupCommand}">
+                                <Button.Behaviors>
+                                    <mct:TouchBehavior PressedScale="0.97" PressedOpacity="0.85" />
+                                </Button.Behaviors>
+                            </Button>
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border Padding="20" StrokeThickness="1" StrokeShape="RoundRectangle 20"
+                            Stroke="{AppThemeBinding Light={StaticResource BorderLight}, Dark={StaticResource BorderDark}}"
+                            BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceLight}, Dark={StaticResource SurfaceDark}}">
+                        <VerticalStackLayout Spacing="12">
+                            <Label Text="🔄 Geri yükleme" Style="{StaticResource SectionLabel}" />
+                            <Label Text="Daha önce oluşturduğunuz .auth yedeğini geri alın." Style="{StaticResource SubtitleLabel}" />
+                            <Button Text="Yedeği geri yükle" Command="{Binding RestoreCommand}" Style="{StaticResource GhostButton}">
+                                <Button.Behaviors>
+                                    <mct:TouchBehavior PressedScale="0.97" PressedOpacity="0.85" />
+                                </Button.Behaviors>
+                            </Button>
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border Padding="12" StrokeThickness="0" StrokeShape="RoundRectangle 14"
+                            BackgroundColor="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource BorderDark}}">
+                        <Label Text="Not: Yedek şifresini güvenli bir yerde saklayın." Style="{StaticResource SubtitleLabel}" />
+                    </Border>
+                </VerticalStackLayout>
+            </ScrollView>
+        </Grid>
+    </Grid>
+</ContentPage>

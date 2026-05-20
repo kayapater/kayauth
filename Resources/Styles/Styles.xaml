@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="false" ?>
+<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Style TargetType="ActivityIndicator">
+        <Setter Property="Color" Value="{DynamicResource Primary}" />
+    </Style>
+
+    <Style TargetType="Button">
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="Background" Value="{DynamicResource AccentGradient}" />
+        <Setter Property="FontFamily" Value="OpenSansSemibold" />
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="CornerRadius" Value="16"/>
+        <Setter Property="Padding" Value="16,12"/>
+        <Setter Property="MinimumHeightRequest" Value="48"/>
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource TextSecondary}}" />
+                            <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource SurfaceDark}}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Entry">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextPrimaryLight}, Dark={StaticResource TextPrimary}}" />
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="FontFamily" Value="OpenSansRegular" />
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="PlaceholderColor" Value="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource TextSecondary}}" />
+        <Setter Property="MinimumHeightRequest" Value="46"/>
+    </Style>
+
+    <Style TargetType="Frame">
+        <Setter Property="HasShadow" Value="False" />
+        <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource BorderLight}, Dark={StaticResource BorderDark}}" />
+        <Setter Property="CornerRadius" Value="20" />
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource SurfaceLight}, Dark={StaticResource SurfaceDark}}" />
+    </Style>
+
+    <Style TargetType="Label">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextPrimaryLight}, Dark={StaticResource TextPrimary}}" />
+        <Setter Property="FontFamily" Value="OpenSansRegular" />
+        <Setter Property="FontSize" Value="14" />
+    </Style>
+
+    <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource BgLight}, Dark={StaticResource BgDark}}" />
+    </Style>
+
+    <Style TargetType="Shell" ApplyToDerivedTypes="True">
+        <Setter Property="Shell.BackgroundColor" Value="{AppThemeBinding Light={StaticResource BgLight}, Dark={StaticResource BgDark}}" />
+        <Setter Property="Shell.ForegroundColor" Value="{DynamicResource Primary}" />
+        <Setter Property="Shell.TitleColor" Value="{AppThemeBinding Light={StaticResource TextPrimaryLight}, Dark={StaticResource TextPrimary}}" />
+        <Setter Property="Shell.NavBarHasShadow" Value="False" />
+    </Style>
+
+    <!-- Custom Shared Styles -->
+    <Style TargetType="Label" x:Key="TitleLabel">
+        <Setter Property="FontFamily" Value="OpenSansSemibold" />
+        <Setter Property="FontSize" Value="28" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextPrimaryLight}, Dark={StaticResource TextPrimary}}" />
+    </Style>
+
+    <Style TargetType="Label" x:Key="SubtitleLabel">
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextSecondaryLight}, Dark={StaticResource TextSecondary}}" />
+    </Style>
+
+    <Style TargetType="Label" x:Key="DisplayLabel">
+        <Setter Property="FontFamily" Value="OpenSansSemibold" />
+        <Setter Property="FontSize" Value="34" />
+        <Setter Property="LineHeight" Value="1.0" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextPrimaryLight}, Dark={StaticResource TextPrimary}}" />
+    </Style>
+
+    <Style TargetType="Label" x:Key="SectionLabel">
+        <Setter Property="FontFamily" Value="OpenSansSemibold" />
+        <Setter Property="FontSize" Value="17" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextPrimaryLight}, Dark={StaticResource TextPrimary}}" />
+    </Style>
+
+    <Style TargetType="Label" x:Key="EyebrowLabel">
+        <Setter Property="FontSize" Value="11" />
+        <Setter Property="CharacterSpacing" Value="1.2" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="TextColor" Value="{DynamicResource Primary}" />
+    </Style>
+
+    <Style TargetType="Label" x:Key="CodeLabel">
+        <Setter Property="FontFamily" Value="Monospace" />
+        <Setter Property="FontSize" Value="30" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="TextColor" Value="{DynamicResource Primary}" />
+    </Style>
+
+    <Style TargetType="Border" x:Key="GlassCard">
+        <Setter Property="StrokeShape" Value="RoundRectangle 24" />
+        <Setter Property="StrokeThickness" Value="1" />
+        <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource BorderLight}, Dark={StaticResource BorderDark}}" />
+        <Setter Property="Background" Value="{AppThemeBinding Light={StaticResource SurfaceLight}, Dark={StaticResource GlassBrush}}" />
+        <Setter Property="Padding" Value="18" />
+    </Style>
+
+    <Style TargetType="Button" x:Key="GhostButton">
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextPrimaryLight}, Dark={StaticResource TextPrimary}}" />
+        <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource BorderLight}, Dark={StaticResource BorderDark}}" />
+        <Setter Property="BorderWidth" Value="1.5" />
+        <Setter Property="CornerRadius" Value="16" />
+    </Style>
+
+    <Style TargetType="Button" x:Key="RoundIconButton">
+        <Setter Property="CornerRadius" Value="22" />
+        <Setter Property="WidthRequest" Value="44" />
+        <Setter Property="HeightRequest" Value="44" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource SurfaceLight}, Dark={StaticResource SurfaceDark}}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextPrimaryLight}, Dark={StaticResource TextPrimary}}" />
+    </Style>
+
+    <Style TargetType="Button" x:Key="PrimaryRoundButton">
+        <Setter Property="CornerRadius" Value="24" />
+        <Setter Property="WidthRequest" Value="48" />
+        <Setter Property="HeightRequest" Value="48" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="Background" Value="{StaticResource AccentGradient}" />
+        <Setter Property="TextColor" Value="White" />
+    </Style>
+
+    <!-- Unified Vector Icons (Explicit PathGeometry for Release mode) -->
+    <PathGeometry x:Key="IconGear" Figures="M19.43,12.98c0.04,-0.32 0.07,-0.64 0.07,-0.98c0,-0.34 -0.03,-0.66 -0.07,-0.98l2.11,-1.65c0.19,-0.15 0.24,-0.42 0.12,-0.64l-2,-3.46c-0.12,-0.22 -0.39,-0.3 -0.61,-0.22l-2.49,1c-0.52,-0.4 -1.08,-0.73 -1.69,-0.98l-0.37,-2.65c-0.04,-0.24 -0.25,-0.42 -0.5,-0.42h-4c-0.25,0 -0.46,0.18 -0.5,0.42l-0.37,2.65c-0.61,0.25 -1.17,0.59 -1.69,0.98l-2.49,-1c-0.22,-0.09 -0.49,0 -0.61,0.22l-2,3.46c-0.13,0.22 -0.07,0.49 0.12,0.64l2.11,1.65c-0.04,0.32 -0.07,0.65 -0.07,0.98c0,0.33 0.03,0.66 0.07,0.98l-2.11,1.65c-0.19,0.15 -0.24,0.42 -0.12,0.64l2,3.46c0.12,0.22 0.39,0.3 0.61,0.22l2.49,-1c0.52,0.4 1.08,0.73 1.69,0.98l0.37,2.65c0.04,0.24 0.25,0.42 0.5,0.42h4c0.25,0 0.46,-0.18 0.5,-0.42l0.37,-2.65c0.61,-0.25 1.17,-0.59 1.69,-0.98l2.49,1c0.22,0.09 0.49,0 0.61,-0.22l2,-3.46c0.12,-0.22 0.07,-0.49 -0.12,-0.64l-2.11,-1.65Z M12,15.5c-1.93,0 -3.5,-1.57 -3.5,-3.5c0,-1.93 1.57,-3.5 3.5,-3.5c1.93,0 3.5,1.57 3.5,3.5c0,1.93 -1.57,3.5 -3.5,3.5Z" />
+    <PathGeometry x:Key="IconPlus" Figures="M19,13h-6v6h-2v-6H5v-2h6V5h2v6h6v2Z" />
+    <PathGeometry x:Key="IconMenu" Figures="M3,18h18v-2H3v2Zm0,-5h18v-2H3v2Zm0,-7v2h18V6H3Z" />
+    <PathGeometry x:Key="IconGrid" Figures="M4,11h5V4H4v7Zm0,9h5v-7H4v7Zm7,0h5v-7h-5v7Zm7,0h5v-7h-5v7Zm-7,-9h5V4h-5v7Zm7,-7v7h5V4h-5Z" />
+    <PathGeometry x:Key="IconArrowLeft" Figures="M20,11H7.83l5.59,-5.59L12,4l-8,8 8,8 1.41,-1.41L7.83,13H20v-2Z" />
+    <PathGeometry x:Key="IconTrash" Figures="M6,19c0,1.1 0.9,2 2,2h8c1.1,0 2,-0.9 2,-2V7H6v12Z M19,4h-3.5l-1,-1h-5l-1,1H5v2h14V4Z" />
+    <PathGeometry x:Key="IconSearch" Figures="M15.5,14h-0.79l-0.28,-0.27C15.41,12.59 16,11.11 16,9.5 16,5.91 13.09,3 9.5,3S3,5.91 3,9.5 5.91,16 9.5,16c1.61,0 3.09,-0.59 4.23,-1.57l0.27,0.28v0.79l5,4.99L20.49,19l-4.99,-5Z M9.5,14C7.01,14 5,11.99 5,9.5S7.01,5 9.5,5 14,7.01 14,9.5 11.99,14 9.5,14Z" />
+    <PathGeometry x:Key="IconShield" Figures="M12,1L3,5v6c0,5.55 3.84,10.74 9,12 5.16,-1.26 9,-6.45 9,-12V5l-9,-4Z M12,11.99h7c-0.53,4.12 -3.28,7.79 -7,8.94V12H5V6.3l7,-3.11v8.8Z" />
+    <PathGeometry x:Key="IconScan" Figures="M4,4h6v2H6v4H4V4Zm16,0v6h-2V6h-4V4h6ZM4,20v-6h2v4h4v2H4Zm16,0h-6v-2h4v-4h2v6Z M5,11h14v2H5v-2Z" />
+    <PathGeometry x:Key="IconLock" Figures="M18,8h-1V6c0,-2.76 -2.24,-5 -5,-5S7,3.24 7,6v2H6c-1.1,0 -2,0.9 -2,2v10c0,1.1 0.9,2 2,2h12c1.1,0 2,-0.9 2,-2V10c0,-1.1 -0.9,-2 -2,-2Z M9,6c0,-1.66 1.34,-3 3,-3s3,1.34 3,3v2H9V6Z" />
+
+</ResourceDictionary>

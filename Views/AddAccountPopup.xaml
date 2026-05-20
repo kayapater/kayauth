@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+           xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+           xmlns:viewmodels="clr-namespace:AuthApp.ViewModels"
+           xmlns:controls="clr-namespace:AuthApp.Controls"
+           x:Class="AuthApp.Views.AddAccountPopup"
+           Color="Transparent">
+
+    <Grid VerticalOptions="End" HorizontalOptions="Fill">
+        <Border x:Name="SheetRoot" Padding="24" Opacity="0" TranslationY="30" Loaded="OnPopupLoaded"
+                StrokeShape="RoundRectangle 28,28,0,0"
+                StrokeThickness="0"
+                BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceLight}, Dark={StaticResource SurfaceDark}}"
+                MaximumWidthRequest="520">
+            
+            <Border.Shadow>
+                <Shadow Brush="Black" Offset="0,-6" Opacity="0.12" Radius="18" />
+            </Border.Shadow>
+
+            <ScrollView>
+                <VerticalStackLayout Spacing="18">
+                    <!-- Indicator for pull-down feel -->
+                    <BoxView WidthRequest="44" HeightRequest="4" CornerRadius="2" 
+                             BackgroundColor="{StaticResource Gray300}" HorizontalOptions="Center" Margin="0,0,0,8" />
+
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Yeni hesap" Style="{StaticResource DisplayLabel}" />
+                        <Label Text="QR ile ya da manuel ekle." Style="{StaticResource SubtitleLabel}" />
+                    </VerticalStackLayout>
+
+                    <Grid ColumnDefinitions="Auto, *" ColumnSpacing="16">
+                        <Border Grid.Column="0" Padding="0" WidthRequest="64" HeightRequest="64" 
+                                StrokeShape="RoundRectangle 16" StrokeThickness="1"
+                                BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceLight}, Dark={StaticResource SurfaceDark}}"
+                                Stroke="{AppThemeBinding Light={StaticResource BorderLight}, Dark={StaticResource BorderDark}}">
+                            <Image Source="{Binding PreviewIconUrl}" Aspect="AspectFit" Margin="10" />
+                        </Border>
+                        
+                        <VerticalStackLayout Grid.Column="1" Spacing="8" VerticalOptions="Center">
+                            <Border StrokeThickness="1.5" StrokeShape="RoundRectangle 16" HeightRequest="44" Padding="12,0"
+                                    Stroke="{DynamicResource CardBorder}"
+                                    BackgroundColor="Transparent">
+                                <Border.Behaviors>
+                                    <mct:TouchBehavior PressedScale="0.97" PressedOpacity="0.85" Command="{Binding ScanQrCommand}" />
+                                </Border.Behaviors>
+                                <Grid ColumnDefinitions="Auto, *" ColumnSpacing="8" HorizontalOptions="Center" VerticalOptions="Center">
+                                    <Path Data="M4,4h6v2H6v4H4V4Zm16,0v6h-2V6h-4V4h6ZM4,20v-6h2v4h4v2H4Zm16,0h-6v-2h4v-4h2v6Z M5,11h14v2H5v-2Z" Fill="{DynamicResource TextPrimaryColor}" Aspect="Uniform" WidthRequest="16" HeightRequest="16" VerticalOptions="Center" />
+                                    <Label Grid.Column="1" Text="QR ile ekle" TextColor="{DynamicResource TextPrimaryColor}" FontSize="15" FontAttributes="Bold" VerticalOptions="Center" />
+                                </Grid>
+                            </Border>
+                            <Label Text="Servis simgesi otomatik bulunur." Style="{StaticResource SubtitleLabel}" />
+                        </VerticalStackLayout>
+                    </Grid>
+
+                    <VerticalStackLayout Spacing="12">
+                        <Label Text="SERVİS" Style="{StaticResource EyebrowLabel}" />
+                        <Border Padding="12,8" StrokeShape="RoundRectangle 14" StrokeThickness="1"
+                                Stroke="{AppThemeBinding Light={StaticResource BorderLight}, Dark={StaticResource BorderDark}}"
+                                BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceLight}, Dark={StaticResource SurfaceDark}}">
+                            <Entry Text="{Binding Issuer}" Placeholder="Google, GitHub, Microsoft" />
+                        </Border>
+
+                        <Label Text="HESAP" Style="{StaticResource EyebrowLabel}" />
+                        <Border Padding="12,8" StrokeShape="RoundRectangle 14" StrokeThickness="1"
+                                Stroke="{AppThemeBinding Light={StaticResource BorderLight}, Dark={StaticResource BorderDark}}"
+                                BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceLight}, Dark={StaticResource SurfaceDark}}">
+                            <Entry Text="{Binding AccountName}" Placeholder="E-posta veya kullanıcı adı" />
+                        </Border>
+
+                        <Label Text="GİZLİ ANAHTAR" Style="{StaticResource EyebrowLabel}" />
+                        <Border Padding="12,8" StrokeShape="RoundRectangle 14" StrokeThickness="1"
+                                Stroke="{AppThemeBinding Light={StaticResource BorderLight}, Dark={StaticResource BorderDark}}"
+                                BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceLight}, Dark={StaticResource SurfaceDark}}">
+                            <Entry Text="{Binding SecretKey}" Placeholder="Base32 gizli anahtar" />
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <!-- CANLI ÖNİZLEME KARTI -->
+                    <Border Style="{StaticResource GlassCard}" Padding="16,12" 
+                            BackgroundColor="#0CFFFFFF"
+                            IsVisible="{Binding IsPreviewVisible}">
+                        <Grid ColumnDefinitions="*, Auto" ColumnSpacing="12" VerticalOptions="Center">
+                            <VerticalStackLayout Spacing="2">
+                                <Label Text="Canlı Kod Önizleme" Style="{StaticResource EyebrowLabel}" TextColor="{StaticResource PrimaryLight}" />
+                                <Label Text="{Binding PreviewCode}" FontSize="32" FontAttributes="Bold" FontFamily="Monospace" TextColor="{StaticResource Primary}" />
+                            </VerticalStackLayout>
+                            <Grid Grid.Column="1" WidthRequest="36" HeightRequest="36" VerticalOptions="Center">
+                                <controls:CircularProgressBar Progress="{Binding PreviewRemainingProgress}"
+                                                              ProgressColor="{Binding PreviewRemainingProgress, Converter={StaticResource ProgressToColorConverter}}"
+                                                              WidthRequest="36" HeightRequest="36" />
+                                <Label Text="{Binding PreviewRemainingProgress, Converter={StaticResource ProgressToSecondsConverter}}" 
+                                       Style="{StaticResource EyebrowLabel}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="9" />
+                            </Grid>
+                        </Grid>
+                    </Border>
+
+                    <Border Padding="12" StrokeThickness="0" StrokeShape="RoundRectangle 12"
+                            BackgroundColor="#1AFF4D3A"
+                            IsVisible="{Binding ErrorMessage, Converter={mct:IsStringNotNullOrEmptyConverter}}">
+                        <Label Text="{Binding ErrorMessage}" TextColor="{StaticResource Error}" FontSize="12" />
+                    </Border>
+
+                    <Grid ColumnDefinitions="*, *" ColumnSpacing="12">
+                        <Button Grid.Column="0" Text="İptal" Command="{Binding CancelCommand}" Style="{StaticResource GhostButton}">
+                            <Button.Behaviors>
+                                <mct:TouchBehavior PressedScale="0.97" PressedOpacity="0.85" />
+                            </Button.Behaviors>
+                        </Button>
+                        <Button Grid.Column="1" Text="Kaydet" Command="{Binding SaveAccountCommand}" FontAttributes="Bold">
+                            <Button.Behaviors>
+                                <mct:TouchBehavior PressedScale="0.97" PressedOpacity="0.85" />
+                            </Button.Behaviors>
+                        </Button>
+                    </Grid>
+                </VerticalStackLayout>
+            </ScrollView>
+        </Border>
+    </Grid>
+</mct:Popup>

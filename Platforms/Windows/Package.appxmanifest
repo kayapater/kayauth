@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Package
+  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+  xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
+  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
+  IgnorableNamespaces="uap rescap">
+
+  <!-- NOT: Microsoft Store'da yayınlamadan önce, aşağıdaki Identity bilgilerini -->
+  <!-- Microsoft Partner Center > Ürün Yönetimi > Ürün Kimliği sayfasındaki değerlerle güncelleyin. -->
+  <Identity Name="com.kayapater.kayauth" Publisher="CN=Kayapater" Version="1.0.0.0" />
+
+  <mp:PhoneIdentity PhoneProductId="4E0C02FC-82F0-4CD6-8B6E-436543E44668" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+
+  <Properties>
+    <DisplayName>Kayauth</DisplayName>
+    <PublisherDisplayName>Kayapater</PublisherDisplayName>
+    <Logo>$placeholder$.png</Logo>
+  </Properties>
+
+  <Dependencies>
+    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.17763.0" MaxVersionTested="10.0.19041.0" />
+    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.17763.0" MaxVersionTested="10.0.19041.0" />
+  </Dependencies>
+
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
+
+  <Applications>
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="$targetentrypoint$">
+      <uap:VisualElements
+        DisplayName="Kayauth"
+        Description="Modern ve şık .NET MAUI Authenticator (TOTP) uygulaması."
+        Square150x150Logo="$placeholder$.png"
+        Square44x44Logo="$placeholder$.png"
+        BackgroundColor="transparent">
+        <uap:DefaultTile Square71x71Logo="$placeholder$.png" Wide310x150Logo="$placeholder$.png" Square310x310Logo="$placeholder$.png" />
+        <uap:SplashScreen Image="$placeholder$.png" />
+      </uap:VisualElements>
+    </Application>
+  </Applications>
+
+  <Capabilities>
+    <rescap:Capability Name="runFullTrust" />
+  </Capabilities>
+
+</Package>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="AuthApp.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:AuthApp"
+    xmlns:views="clr-namespace:AuthApp.Views"
+    Shell.FlyoutBehavior="Disabled"
+    Title="AuthApp">
+
+    <!-- Main Page (Now First = Default) -->
+    <ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" />
+
+    <!-- Welcome Page (Hidden from nav, used for first run) -->
+    <ShellContent
+        Title="Hoş Geldiniz"
+        ContentTemplate="{DataTemplate views:WelcomePage}"
+        Route="WelcomePage"
+        Shell.FlyoutItemIsVisible="False"
+        Shell.TabBarIsVisible="False" />
+
+    <!-- Settings Page -->
+    <ShellContent
+        Title="Settings"
+        ContentTemplate="{DataTemplate views:SettingsPage}"
+        Route="SettingsPage"
+        Shell.FlyoutItemIsVisible="False" />
+
+</Shell>

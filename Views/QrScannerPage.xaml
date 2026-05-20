@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                         xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI.Controls"
+                         xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+                         x:Class="AuthApp.Views.QrScannerPage"
+                         Title="QR Kodunu Tara"
+                         Shell.NavBarIsVisible="False">
+
+        <Grid>
+                <zxing:CameraBarcodeReaderView x:Name="barcodeReader" BarcodesDetected="OnBarcodesDetected" />
+
+                <Grid RowDefinitions="Auto,*,Auto" Padding="24" RowSpacing="20">
+                        <Border Grid.Row="0" Padding="12,8" StrokeThickness="0" StrokeShape="RoundRectangle 12"
+                                        BackgroundColor="#99000000">
+                                <Label Text="QR kodunu kadraja hızala" TextColor="White" FontSize="13" />
+                        </Border>
+
+                        <Border Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center"
+                                        WidthRequest="260" HeightRequest="260"
+                                        Stroke="{DynamicResource Primary}" StrokeThickness="3"
+                                        BackgroundColor="Transparent"
+                                        StrokeShape="RoundRectangle 28" />
+
+                        <Button Grid.Row="2" Text="Vazgeç" Clicked="OnCancelClicked"
+                                        BackgroundColor="#1A1A1A" TextColor="White" CornerRadius="24" Padding="30,10"
+                                        HorizontalOptions="Center">
+                                <Button.Behaviors>
+                                        <mct:TouchBehavior PressedScale="0.96" PressedOpacity="0.85" />
+                                </Button.Behaviors>
+                        </Button>
+                </Grid>
+        </Grid>
+</ContentPage>

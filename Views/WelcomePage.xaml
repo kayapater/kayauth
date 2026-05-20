@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:AuthApp.ViewModels"
+             xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="AuthApp.Views.WelcomePage"
+             x:DataType="viewmodels:WelcomeViewModel"
+             Title="Hoş Geldiniz"
+             Shell.NavBarIsVisible="False">
+
+    <Grid Background="{DynamicResource PageGradient}">
+        <AbsoluteLayout InputTransparent="True">
+            <Ellipse Fill="{DynamicResource PrimaryBrush}" Opacity="0.08" WidthRequest="240" HeightRequest="240"
+                      AbsoluteLayout.LayoutBounds="0.05,0.08,240,240" AbsoluteLayout.LayoutFlags="PositionProportional" />
+            <Ellipse Fill="{DynamicResource SecondaryBrush}" Opacity="0.08" WidthRequest="200" HeightRequest="200"
+                      AbsoluteLayout.LayoutBounds="0.95,0.2,200,200" AbsoluteLayout.LayoutFlags="PositionProportional" />
+        </AbsoluteLayout>
+
+        <Grid Padding="28" MaximumWidthRequest="520" HorizontalOptions="Center" RowDefinitions="*,Auto">
+            <VerticalStackLayout Grid.Row="0" Spacing="22" VerticalOptions="Center" HorizontalOptions="Center">
+                <Border WidthRequest="96" HeightRequest="96" StrokeThickness="1" StrokeShape="RoundRectangle 24"
+                        Stroke="{AppThemeBinding Light={StaticResource BorderLight}, Dark={StaticResource BorderDark}}"
+                        BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceLight}, Dark={StaticResource SurfaceDark}}">
+                    <Path Data="M12,1L3,5v6c0,5.55 3.84,10.74 9,12 5.16,-1.26 9,-6.45 9,-12V5l-9,-4Z M12,11.99h7c-0.53,4.12 -3.28,7.79 -7,8.94V12H5V6.3l7,-3.11v8.8Z" Fill="{DynamicResource Primary}" Aspect="Uniform" WidthRequest="44" HeightRequest="44" HorizontalOptions="Center" VerticalOptions="Center" />
+                </Border>
+
+                <VerticalStackLayout Spacing="6" HorizontalOptions="Center">
+                    <Label Text="Kayauth" Style="{StaticResource DisplayLabel}" HorizontalTextAlignment="Center" />
+                    <Label Text="Güvenli kodlar, tek ritim." Style="{StaticResource SubtitleLabel}" HorizontalTextAlignment="Center" />
+                    <Label Text="Hesaplarınızı güvenle yönetin ve yedekleyin." Style="{StaticResource SubtitleLabel}" HorizontalTextAlignment="Center" />
+                </VerticalStackLayout>
+
+                <Border Padding="14" StrokeThickness="1" StrokeShape="RoundRectangle 16"
+                        Stroke="{AppThemeBinding Light={StaticResource BorderLight}, Dark={StaticResource BorderDark}}"
+                        BackgroundColor="{AppThemeBinding Light={StaticResource SurfaceLight}, Dark={StaticResource SurfaceDark}}">
+                    <Grid ColumnDefinitions="Auto, *" ColumnSpacing="12">
+                        <Path Data="M18,8h-1V6c0,-2.76 -2.24,-5 -5,-5S7,3.24 7,6v2H6c-1.1,0 -2,0.9 -2,2v10c0,1.1 0.9,2 2,2h12c1.1,0 2,-0.9 2,-2V10c0,-1.1 -0.9,-2 -2,-2Z M9,6c0,-1.66 1.34,-3 3,-3s3,1.34 3,3v2H9V6Z" Fill="{DynamicResource Primary}" Aspect="Uniform" WidthRequest="18" HeightRequest="18" VerticalOptions="Center" />
+                        <Label Grid.Column="1" Text="Yedekleme ile cihaz değişikliklerinde verilerinizi geri alın." Style="{StaticResource SubtitleLabel}" />
+                    </Grid>
+                </Border>
+
+                <VerticalStackLayout Spacing="12" WidthRequest="320">
+                    <Button Text="Yeni bir başlangıç yap" Command="{Binding StartFreshCommand}">
+                        <Button.Behaviors>
+                            <mct:TouchBehavior PressedScale="0.97" PressedOpacity="0.85" />
+                        </Button.Behaviors>
+                    </Button>
+
+                    <Button Text="Yedekten geri yükle" Command="{Binding RestoreBackupCommand}" Style="{StaticResource GhostButton}">
+                        <Button.Behaviors>
+                            <mct:TouchBehavior PressedScale="0.97" PressedOpacity="0.85" />
+                        </Button.Behaviors>
+                    </Button>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </Grid>
+    </Grid>
+</ContentPage>
